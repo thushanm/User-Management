@@ -3,9 +3,9 @@ const dotenv = require("dotenv")
 dotenv.config({path:'config.env'})
 const app = require("./app")
 
-const localDB =  process.env.DATABASE_LOCAL;
+const localDB = process.env.DATABASE_LOCAL;
 
-mongoose.connect(localDB).then(()=>console.log("mongoose DB is Connected"))
+mongoose.connect(localDB).then(()=>console.log(`mongoose DB is Connected ${localDB}`))
 
 const port = process.env.PORT;
 app.listen(port,()=>{
