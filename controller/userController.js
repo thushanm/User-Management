@@ -48,4 +48,64 @@ exports.getAllUsers = async(req, res)=> {
         });
 
     }
+};
+exports.getUser=async(req,res)=>{
+    try {
+        const getUser = await users.findById(req.params.id)
+        res.status(200)({
+            status:"getData",
+            data:{
+
+                getUser
+            }
+
+
+        })
+    }catch (err){
+        res.status(404)({
+
+            status:"HasSome Problem",
+            massage:err
+
+        })
+
+
+    }
 }
+exports.deleteUser= async (req,res)=>{
+    try {
+        const deleteUser = await users.findByIdAndDelete(req.params.id)
+        res.status(200).json({
+            status:"deleted",
+            data:deleteUser
+
+        })
+    }catch (err){
+
+        res.status(404).json({
+            status:"Error",
+            massage:err
+
+
+        })
+    }
+}
+exports.updateUser=async(req,res)=>{
+    try {
+        const updateUser= await users.findByIdAndUpdate(req.params.id,req.body)
+        res.status(200).json({
+
+            status:"updated",
+            data:updateUser
+        })
+    }catch (err){
+
+        res.status(404).json({
+            status:"hasSomeProblem",
+            massage:err
+
+        })
+    }
+
+}
+
