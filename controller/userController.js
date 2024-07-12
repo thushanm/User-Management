@@ -49,36 +49,31 @@ exports.getAllUsers = async(req, res)=> {
 
     }
 };
-exports.getUser=async(req,res)=>{
-    try {
-        const getUser = await users.findById(req.params.id)
-        res.status(200)({
-            status:"getData",
-            data:{
+exports.getUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
 
-                getUser
-            }
+    const user = await users.findById(userId);
 
-
-        })
-    }catch (err){
-        res.status(404)({
-
-            status:"HasSome Problem",
-            massage:err
-
-        })
-
-
+    if (!user) {
+      return res.status(404).json({ status: 'User not found' });
     }
-}
+
+    res.status(200).json({ status: 'success', data: { user } });
+  } catch (err) {
+    console.error('Error getting user:', err);
+    res.status(500).json({ status: 'error', message: 'Internal server error' });
+  }
+};
+
 exports.deleteUser= async (req,res)=>{
     try {
         const deleteUser = await users.findByIdAndDelete(req.params.id)
         res.status(200).json({
             status:"deleted",
-            data:deleteUser
-
+            data:{
+                deleteUser
+            }
         })
     }catch (err){
 

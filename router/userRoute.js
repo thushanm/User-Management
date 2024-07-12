@@ -5,9 +5,9 @@ const userRoute = express.Router()
 
 userRoute.route('/').post(userController.addUser)
 userRoute.route('/getAll').get(userController.getAllUsers)
-userRoute.route('/').get(userController.getUser)
-userRoute.route('/').put(userController.updateUser)
-userRoute.route('/').delete(userController.deleteUser)
+userRoute.route('/:id').get(userController.getUser)
+userRoute.route('/:id').put(userController.updateUser)
+userRoute.route('/:id').delete(userController.deleteUser)
 
 
 module.exports=userRoute;
