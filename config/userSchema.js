@@ -19,8 +19,8 @@ const userSchema = new mongoose.Schema({
     },
     gender: {
         type: String,
-        enum: ['Male', 'Female', 'Other'], // Optional: restrict gender options
+        enum: ['Male', 'Female', 'Other'],
     },
 });
-
-module.exports = mongoose.model('user', userSchema);
+const users = mongoose.model('users',userSchema)
+module.exports = users;
