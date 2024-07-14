@@ -9,5 +9,5 @@ userRoute.route('/:id').get(userController.getUser)
 userRoute.route('/:id').put(userController.updateUser)
 userRoute.route('/:id').delete(userController.deleteUser)
 
-
+console.log("oky express")
 module.exports=userRoute;
